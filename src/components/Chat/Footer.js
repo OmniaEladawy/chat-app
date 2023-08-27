@@ -25,6 +25,7 @@ import useResponsive from "../../hooks/useResponsive";
 
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import { ImageUpload } from "./ImageUpload";
 
 const StyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
@@ -93,13 +94,15 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
         endAdornment: (
           <Stack sx={{ display: "flex", flexDirection: "row" }}>
             <InputAdornment>
-              <IconButton
-                onClick={() => {
-                  setOpenPicker(!openPicker);
-                }}
+              {/* <IconButton
+              onClick={() => {
+                setOpenPicker(!openPicker);
+              }}
               >
                 <Camera />
-              </IconButton>
+              
+              </IconButton> */}
+              <ImageUpload />
             </InputAdornment>
             <InputAdornment>
               <IconButton
