@@ -4,6 +4,8 @@ import Router from "./routes";
 import ThemeProvider from './theme';
 // components
 import ThemeSettings from './components/settings';
+import "./styles/globals.css";
+
 
 function App() {
   return (

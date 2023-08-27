@@ -163,39 +163,23 @@ const Chat_History = [
     type: "msg",
     subtype: "img",
     message: "Here You Go",
-    img: faker.image.abstract(),
+    img: "https://loremflickr.com/cache/resized/65535_52952645438_9759be6144_c_640_480_nofilter.jpg",
     incoming: true,
     outgoing: false,
   },
   {
     type: "msg",
-    message: "Can you please send this in file format?",
+    message: "Can you please send this in record?",
     incoming: false,
     outgoing: true,
   },
 
   {
     type: "msg",
-    subtype: "doc",
+    subtype: "audio",
     message: "Yes sure, here you go.",
     incoming: true,
     outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "link",
-    preview: faker.image.cats(),
-    message: "Yep, I can also do that",
-    incoming: true,
-    outgoing: false,
-  },
-  {
-    type: "msg",
-    subtype: "reply",
-    reply: "This is a reply",
-    message: "Yep, I can also do that",
-    incoming: false,
-    outgoing: true,
   },
 ];
 
