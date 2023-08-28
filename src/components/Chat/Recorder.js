@@ -3,7 +3,9 @@ import MicRecorder from "mic-recorder-to-mp3";
 
 
 const Recorder = () => {
-    const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+    const [Mp3Recorder, setMp3Recorder] = React.useState(
+      new MicRecorder({ bitRate: 128 })
+    );
     const [isRecording, setIsRecording] = React.useState(false);
     const [blobURL, setBlobURL] = React.useState('');
     const [isBlocked, setIsBlocked] = React.useState(false);
