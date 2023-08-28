@@ -1,5 +1,5 @@
 import { Box, IconButton } from "@mui/material";
-import { Camera } from "phosphor-react";
+import { Camera, XCircle } from "phosphor-react";
 import React from "react";
 import ImageUploading from "react-images-uploading";
 
@@ -54,24 +54,41 @@ export function ImageUpload() {
                 flexWrap: "wrap",
                 justifyContent: "center",
                 borderRadius: "15px",
+                boxShadow: "0px 0px 5px #0000005c",
               }}
             >
               {imageList.map((image, index) =>
                 imageList.length === 1 ? (
-                  <img
-                    key={index}
-                    src={image["data_url"]}
-                    alt=""
-                    width="300px"
-                  />
+                  <Box sx={{ position: "relative" }}>
+                    <IconButton
+                      onClick={() => onImageRemove(index)}
+                      sx={{ position: "absolute", right: "0px", top: "0px" }}
+                    >
+                      <XCircle size={25} color="#000000bd" weight="fill" />
+                    </IconButton>
+                    <img
+                      key={index}
+                      src={image["data_url"]}
+                      alt=""
+                      width="300px"
+                    />
+                  </Box>
                 ) : (
-                  <img
-                    key={index}
-                    src={image["data_url"]}
-                    alt=""
-                    width="100px"
-                    style={{ margin: "5px" }}
-                  />
+                  <Box sx={{ position: "relative" }}>
+                    <IconButton
+                      onClick={() => onImageRemove(index)}
+                      sx={{ position: "absolute", right: "0px", top: "0px" }}
+                    >
+                      <XCircle size={25} color="#000000bd" weight="fill" />
+                    </IconButton>
+                    <img
+                      key={index}
+                      src={image["data_url"]}
+                      alt=""
+                      width="150px"
+                      style={{ margin: "5px" }}
+                    />
+                  </Box>
                 )
               )}
             </Box>
