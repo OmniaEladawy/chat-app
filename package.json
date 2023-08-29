@@ -25,7 +25,9 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "simplebar-react": "^2.4.3",
+    "styled-components": "^6.0.7",
     "stylis-plugin-rtl": "^2.0.2",
+    "wavesurfer.js": "^7.1.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -3,6 +3,7 @@ import MicRecorder from "mic-recorder-to-mp3";
 import { Microphone } from 'phosphor-react';
 import { Box, IconButton } from '@mui/material';
 import useStopwatch from '../../hooks/useStopwatch';
+import AudioWaveform from './AudioWaveform';
 
 
 const Recorder = () => {
@@ -60,12 +61,14 @@ const Recorder = () => {
       </button> */}
       <IconButton onClick={start}>
         <Microphone />
-        { time}
+        {time}
       </IconButton>
       <button onClick={stop} disabled={!isRecording}>
         Stop
       </button>
       {/* <audio src={blobURL} controls="controls" /> */}
+      {blobURL ?  <AudioWaveform fileURL={blobURL} /> : null}
+     
     </Box>
   );
 }
