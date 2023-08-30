@@ -46,6 +46,11 @@ const Actions = [
 
 const ChatInput = ({ openPicker, setOpenPicker }) => {
   const [openActions, setOpenActions] = React.useState(false);
+  const [isRecording, setIsRecording] = React.useState(false);
+  
+  const handleRecording = (data) => {
+    setIsRecording(data);
+  }
 
   return (
     <StyledInput
@@ -106,14 +111,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
               <ImageUpload />
             </InputAdornment>
             <InputAdornment>
-              {/* <IconButton
-                onClick={() => {
-                  setOpenPicker(!openPicker);
-                }}
-              >
-                <Microphone />
-              </IconButton> */}
-              <Recorder />
+              <Recorder handleRecording={handleRecording} />
             </InputAdornment>
           </Stack>
         ),
