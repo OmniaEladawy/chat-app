@@ -3,10 +3,11 @@ import WaveSurfer from "wavesurfer.js";
 import { WaveformContianer, Wave, PlayButton } from "./Waveform.styled";
 
 const AudioWaveform = ({ fileURL }) => {
-    const [playing, setPlaying] = React.useState(false);
-    const [waveform,setWaveform] = React.useState(null)
-    React.useEffect(() => {
-        
+  const [playing, setPlaying] = React.useState(false);
+  const [waveform, setWaveform] = React.useState(null);
+
+  React.useEffect(() => {
+    if (waveform === null) {
       setWaveform(
         WaveSurfer.create({
           barWidth: 3,
@@ -23,24 +24,25 @@ const AudioWaveform = ({ fileURL }) => {
           cursorColor: "transparent",
         })
       );
+    }
 
-      waveform?.load(fileURL);
-    }, [waveform]);
+    waveform?.load(fileURL);
+  }, [waveform]);
 
-    const handlePlay = () => {
+  const handlePlay = () => {
     setPlaying(!playing);
     waveform?.playPause();
   };
-    return (
-      <WaveformContianer>
-        <PlayButton onClick={handlePlay}>
-          {!playing ? "Play" : "Pause"}
-        </PlayButton>
-        <Wave id="waveform" />
-        <audio id="track" src={fileURL} />
-        <div>0.52</div>
-      </WaveformContianer>
-    );
-}
+  return (
+    <WaveformContianer>
+      <PlayButton onClick={handlePlay}>
+        {!playing ? "Play" : "Pause"}
+      </PlayButton>
+      <Wave id="waveform" />
+      <audio id="track" src={fileURL} />
+      <div>0.52</div>
+    </WaveformContianer>
+  );
+};
 
 export default AudioWaveform;
