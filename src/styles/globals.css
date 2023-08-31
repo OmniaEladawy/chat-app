@@ -17,3 +17,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+#waveform div:nth-of-type(2) {
+  width: 80%;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import WaveSurfer from "wavesurfer.js";
 import { WaveformContianer, Wave, PlayButton } from "./Waveform.styled";
+import { IconButton, Stack } from "@mui/material";
+import { Pause, Play } from "phosphor-react";
 
 const AudioWaveform = ({ fileURL }) => {
   const [playing, setPlaying] = React.useState(false);
@@ -32,14 +34,28 @@ const AudioWaveform = ({ fileURL }) => {
   const handlePlay = () => {
     setPlaying(!playing);
     waveform?.playPause();
+    waveform.on("finish", () => setPlaying(false));  
   };
   return (
-    <WaveformContianer>
-      <PlayButton onClick={handlePlay}>
-        {!playing ? "Play" : "Pause"}
-      </PlayButton>
-      <Wave id="waveform" sx={{ width: '100%',height: '90px'}} />
-    </WaveformContianer>
+    <Stack
+      direction="row"
+      alignItems={"center"}
+      justifyContent={"space-between"}
+      gap={"10px"}
+      sx={{
+        boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
+        borderRadius: "14px",
+        backgroundColor: "#eceff5",
+        height: "35px",
+        padding: "2px 10px",
+        overflow: "hidden"
+      }}
+    >
+      <IconButton onClick={handlePlay}>
+        {!playing ? <Play size={23} /> : <Pause size={23} />}
+      </IconButton>
+      <Wave id="waveform" sx={{ width: "100%", height: "50px" }} />
+    </Stack>
   );
 };
 
