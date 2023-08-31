@@ -14,6 +14,7 @@ export const WaveformContianer = styled.div`
 export const Wave = styled.div`
   width: 100%;
   height: 90px;
+ 
 `;
 
 export const PlayButton = styled.button`

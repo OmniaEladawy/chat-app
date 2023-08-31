@@ -38,9 +38,7 @@ const AudioWaveform = ({ fileURL }) => {
       <PlayButton onClick={handlePlay}>
         {!playing ? "Play" : "Pause"}
       </PlayButton>
-      <Wave id="waveform" />
-      <audio id="track" src={fileURL} />
-      <div>0.52</div>
+      <Wave id="waveform" sx={{ width: '100%',height: '90px'}} />
     </WaveformContianer>
   );
 };

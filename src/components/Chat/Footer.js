@@ -44,74 +44,32 @@ const Actions = [
   },
 ];
 
-const ChatInput = ({ openPicker, setOpenPicker }) => {
-  const [openActions, setOpenActions] = React.useState(false);
-  const [isRecording, setIsRecording] = React.useState(false);
-  
-  const handleRecording = (data) => {
-    setIsRecording(data);
-  }
-
+const ChatInput = ({
+  handleRecording,
+  isRecording,
+  handleBlobURL,
+  blobURL,
+}) => {
   return (
     <StyledInput
       fullWidth
-      placeholder="Write a message..."
+      placeholder={isRecording || blobURL ? "" : "Write a message..."}
       variant="filled"
       InputProps={{
         disableUnderline: true,
-        // startAdornment: (
-        //   <Stack sx={{ width: "max-content" }}>
-        //     <Stack
-        //       sx={{
-        //         position: "relative",
-        //         display: openActions ? "inline-block" : "none",
-        //       }}
-        //     >
-        //       {Actions.map((el) => (
-        //         <Tooltip placement="right" title={el.title}>
-        //           <Fab
-        //             onClick={() => {
-        //               setOpenActions(!openActions);
-        //             }}
-        //             sx={{
-        //               position: "absolute",
-        //               top: -el.y,
-        //               backgroundColor: el.color,
-        //             }}
-        //             aria-label="add"
-        //           >
-        //             {el.icon}
-        //           </Fab>
-        //         </Tooltip>
-        //       ))}
-        //     </Stack>
-
-        //     <InputAdornment>
-        //       <IconButton
-        //         onClick={() => {
-        //           setOpenActions(!openActions);
-        //         }}
-        //       >
-        //         <LinkSimple />
-        //       </IconButton>
-        //     </InputAdornment>
-        //   </Stack>
-        // ),
         endAdornment: (
           <Stack sx={{ display: "flex", flexDirection: "row" }}>
+            {!isRecording && !blobURL ? (
+              <InputAdornment>
+                <ImageUpload />
+              </InputAdornment>
+            ) : null}
+
             <InputAdornment>
-              {/* <IconButton
-              onClick={() => {
-                setOpenPicker(!openPicker);
-              }}
-              >
-                <Camera />
-              
-              </IconButton> */}
-              <ImageUpload />
-            </InputAdornment>
-            <InputAdornment>
-              <Recorder handleRecording={handleRecording} />
+              <Recorder
+                handleRecording={handleRecording}
+                handleBlobURL={handleBlobURL}
+              />
             </InputAdornment>
           </Stack>
         ),
@@ -127,7 +85,17 @@ const Footer = () => {
 
   const [searchParams] = useSearchParams();
 
-  const [openPicker, setOpenPicker] = React.useState(false);
+  const [isRecording, setIsRecording] = React.useState(false);
+  const [blobURL, setBlobURL] = React.useState("");
+  
+    const handleRecording = (data) => {
+      setIsRecording(data);
+  };
+  
+    const handleBlobURL = (data) => {
+      setBlobURL(data);
+    };
+
   return (
     <Box
       sx={{
@@ -149,28 +117,16 @@ const Footer = () => {
       >
         <Stack direction="row" alignItems={"center"} spacing={isMobile ? 1 : 3}>
           <Stack sx={{ width: "100%" }}>
-            <Box
-              style={{
-                zIndex: 10,
-                position: "fixed",
-                display: openPicker ? "inline" : "none",
-                bottom: 81,
-                right: isMobile
-                  ? 20
-                  : searchParams.get("open") === "true"
-                  ? 420
-                  : 100,
-              }}
-            >
-              <Picker
-                theme={theme.palette.mode}
-                data={data}
-                onEmojiSelect={console.log}
-              />
-            </Box>
             {/* Chat Input */}
-            <ChatInput openPicker={openPicker} setOpenPicker={setOpenPicker} />
+
+            <ChatInput
+              handleRecording={handleRecording}
+              isRecording={isRecording}
+              handleBlobURL={handleBlobURL}
+              blobURL={blobURL}
+            />
           </Stack>
+
           <Box
             sx={{
               height: 48,
